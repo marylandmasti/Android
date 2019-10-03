@@ -10,9 +10,10 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1CruIAbNDAfE2XugXGxd1IYKNxuxsbYPzXDW1MeEpjEc'
+SAMPLE_SPREADSHEET_ID = '1CruIAbNDAfE2XugXGxd1IYKNxuxsbYPzXDW1MeEpjEc'  # spreadsheet id from google spreadsheet (in the url of sheet)
 
-SAMPLE_RANGE_NAME = 'Sheet1!A:G'
+
+SAMPLE_RANGE_NAME = 'Sheet1!A:G'   # Columns that we would like to call
 
 def backend():
     """Shows basic usage of the Sheets API.
@@ -45,7 +46,7 @@ def backend():
                                 range=SAMPLE_RANGE_NAME).execute()
     values = result.get('values', [])
 
-    if not values:
+    if not values: #api call has failed
         print('No data found.')
         return("MM14 tech has failed :( please use ~link to bible~")
     else:
@@ -54,7 +55,7 @@ def backend():
             # Print columns A and E, which correspond to indices 0 and 4.
             ans+=(row)
             ans+="\n"
-        return ans
+        return ans   # could just return values. Depends on how we want to format the data
 
 if __name__ == '__main__':
     print(backend())
